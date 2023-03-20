@@ -8,10 +8,10 @@ import time
 def main(username,password):
     chusihua = requests.get('https://bbs.binmt.cc/misc.php?mod=mobile',headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'})
     saltkey = re.findall('saltkey=(.*?);',str(chusihua.headers))[0]
-    formhash = re.findall('formhash=(.*?)&',str(chusihua.text))[0]
+    formhash = re.findall('formhash=(.*?)&amp',str(chusihua.text))[0]
     #print(formhash)
     data = "formhash=" + formhash + "&referer=https%3A%2F%2Fbbs.binmt.cc%2Fk_misign-sign.html&fastloginfield=username&cookietime=31104000&username=" + username + "&password=" + password + "&questionid=0&answer=&submit=true";
-    headers = {'Cookie': 'cQWy_2132_saltkey=' + saltkey,'Content-type': 'text/html; charset=utf-8','User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'}
+    headers = {'Cookie': 'cQWy_2132_saltkey=' + saltkey,'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8','User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'}
     #print(headers)
     denlu = requests.post('https://bbs.binmt.cc/member.php?mod=logging&action=login&loginsubmit=yes&loginhash=&handlekey=loginform&inajax=1',data=data.encode("utf-8"),headers=headers)
     #print(denlu.text)
