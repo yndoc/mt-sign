@@ -33,7 +33,6 @@ def main(username,password):
     else:
         print('签到失败')
 
-
 if __name__ == '__main__':
     #账号
     username = os.environ["username"]
