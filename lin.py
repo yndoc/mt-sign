@@ -7,7 +7,7 @@ import time
 
 def main(username,password):
     chusihua = requests.get('https://bbs.binmt.cc/misc.php?mod=mobile',headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.44'})
-    saltkey = re.findall('saltkey=(.*?);',str(chusihua.headers))[0]
+    saltkey = re.findall('_saltkey=(.*?);',str(chusihua.headers))[0]
     formhash = re.findall('formhash=(.*?)&amp',str(chusihua.text))[0]
     #print(formhash)
     data = "formhash=" + formhash + "&referer=https%3A%2F%2Fbbs.binmt.cc%2Fk_misign-sign.html&loginfield=username&username=" + username + "&password=" + password + "&questionid=0&answer=&submit=true";
